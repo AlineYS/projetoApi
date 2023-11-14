@@ -20,6 +20,9 @@ public class ProdutoController {
     @PostMapping("/cadastrar")
     public void cadastrarProduto(@RequestBody Produto1 p){ prepo.save(p);}
 
+    @GetMapping ("/todos")
+    public List<Produto1> buscarTodosProdutos(){ return prepo.findAll();}
+
     @GetMapping("/todos/codigo/{codigo}")
     public Optional<Produto1> buscarPorCodigo(@PathVariable("codigo") int codigo){return prepo.findById(codigo);}
 
@@ -32,7 +35,7 @@ public class ProdutoController {
     @GetMapping("/todos/marca/{marca}")
     public List<Produto1> buscarPorMarca(@PathVariable("marca") String marca){return prepo.findByMarca(marca);}
 
-    @GetMapping("/todos/marcapreco/{marcapreco}")
+    @GetMapping("/todos/marcapreco/{marca}/{preco}")
     public List<Produto1> buscarPorParteMarcaMenorPreco(@PathVariable("marca") String marca, @PathVariable("preco") double preco){return  prepo.findByParteMarcaMenorPreco(marca,preco);}
 
     @DeleteMapping("/remover")
